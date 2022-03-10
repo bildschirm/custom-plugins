@@ -23,6 +23,7 @@
   "dependencies": {
     "@oznu/hap-client": "^1.8.1",
     "db-hafas": "^5.0.2",
+    "spotify-web-api-node": "^5.0.2",
     "superagent": "^7.1.1"
   }
 }
