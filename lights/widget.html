@@ -1,0 +1,43 @@
+<script type="module">
+	const { dashboard, components } = BILDSCHIRM;
+
+	const lights = {
+		template: `
+			<ServiceProvider service="lights" v-slot="{ on, invokeAction }">
+				<section>
+					<PanelLabel>
+						Lights
+					</PanelLabel>
+					<Panel class="flex items-center">
+						<div class="flex-1">
+							<Button
+								@click="toggle(invokeAction)"
+								class="w-full"
+							>
+								{{ on ? 'Turn off' : 'Turn on' }}
+							</Button>
+						</div>  
+					</Panel>
+				</section>
+			</ServiceProvider>
+		`,
+		components: {
+			Button: components.form.Button,
+			ServiceProvider: components.headless.ServiceProvider,
+			Panel: components.common.Panel,
+			PanelLabel: components.common.PanelLabel,
+		},
+		methods: {
+			async toggle(invoke) {
+				try {
+					await invoke('toggle', {});
+				} catch (e) {
+					console.error(e);
+				}
+			}
+		}
+	};
+
+	dashboard.component('lights', lights);
+
+</script>
